@@ -1,9 +1,21 @@
-import React from "react";
+import React, { useState } from "react";
 import "./LoginCompo.css";
+import axios from "axios";
 
 import { TextField, Box, Button } from "@material-ui/core";
 
 const LoginCompo = () => {
+  const [username, setUsername] = useState();
+  const [password, setPassword] = useState();
+
+  function login() {
+    axios({
+      method: "GET",
+      url: "http://192.168.42.235:8000/login/",
+    }).then((res) => {
+      console.log(res);
+    });
+  }
   return (
     <Box>
       <h1 className="login-label">LogIn</h1>
@@ -15,10 +27,23 @@ const LoginCompo = () => {
         flexDirection="column"
         className="box"
       >
-        <TextField id="standard-basic" label="Username" />
-        <TextField type="password" id="standard-basic" label="Password" />
+        <TextField
+          onChange={(ev) => {
+            setUsername(ev.target.value);
+          }}
+          id="standard-basic"
+          label="Username"
+        />
+        <TextField
+          onChange={(ev) => {
+            setPassword(ev.target.value);
+          }}
+          type="password"
+          id="standard-basic"
+          label="Password"
+        />
         <Button
-          onClick={() => {}}
+          onClick={login}
           style={{ marginTop: 20 }}
           variant="contained"
           color="primary"

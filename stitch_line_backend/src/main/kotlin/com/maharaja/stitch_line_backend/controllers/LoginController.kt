@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/login")
+@CrossOrigin("*")
 class   LoginController {
 
     @Autowired
@@ -31,7 +32,6 @@ class   LoginController {
 
     @PostMapping("/admin",consumes = arrayOf(MediaType.APPLICATION_JSON_VALUE),produces = arrayOf(MediaType.APPLICATION_JSON_VALUE))
     fun admin(@RequestBody dto: AdminDTO): ResponseEntity<Response> {
-        print("okkkk")
         adminservice.addAdmin(dto)
         return ResponseEntity<Response>(Response("200","Done",dto), HttpStatus.OK);
     }
