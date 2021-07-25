@@ -1,0 +1,12 @@
+.typelink {
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main {
+  border-radius: 5px;
+  padding: 50px;
+  box-shadow: 1px 1px 4px 0px gray;
+}
