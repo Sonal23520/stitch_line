@@ -15,14 +15,14 @@ const SignupCompo = () => {
   const [height, setHeight] = useState(350);
 
   /////////////////DATA//////////////
-  const [username, setUsername] = useState();
-  const [name, setName] = useState();
-  const [email, setEmail] = useState();
-  const [address, setAddress] = useState();
-  const [contact, setContact] = useState();
-  const [password, setPassword] = useState();
-  const [nic, setNic] = useState();
-  const [empid, setEmpid] = useState();
+  const [username, setUsername] = useState("");
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [address, setAddress] = useState("");
+  const [contact, setContact] = useState("");
+  const [password, setPassword] = useState("");
+  const [nic, setNic] = useState("");
+  const [empid, setEmpid] = useState("");
   ////////////ERRO//////////////////
   const [usernameerro, setUsernameErro] = useState(false);
   const [passworderro, setPasswordErro] = useState(false);
@@ -75,13 +75,13 @@ const SignupCompo = () => {
     } else if (value == "Admin" && !empidRegex.test(empid)) {
       setEmpidErro(true);
       setEmpidHelper("please fill valid employee id");
-    } else if (username == "") {
+    } else if ((username == "") | (username == undefined)) {
       setUsernameErro(true);
       setUsernameHelper("please fill username");
     } else if (!usernameRegex.test(username)) {
       setUsernameErro(true);
       setUsernameHelper("please fill valid username");
-    } else if (name == "") {
+    } else if ((name == "") | (name == undefined)) {
       setNameErro(true);
       setNameHelper("please fill name");
     } else if (!nameRegex.test(name)) {

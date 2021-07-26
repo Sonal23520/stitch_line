@@ -46,9 +46,8 @@ const LoginCompo = () => {
   return (
     <Box>
       <h1 className="login-label">LogIn</h1>
-
       <Box
-        width={500}
+        width={400}
         height={200}
         justifyContent="space-around"
         display="flex"
