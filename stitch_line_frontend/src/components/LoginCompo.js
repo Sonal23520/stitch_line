@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import "./LoginCompo.css";
 import axios from "axios";
+import Admin from "../screens/Admin";
+import { useHistory } from "react-router-dom";
 
 import { TextField, Box, Button, Alert } from "@material-ui/core";
 
@@ -16,6 +18,8 @@ const LoginCompo = () => {
 
   var usernameRegex = /^[a-zA-Z0-9]+$/;
   var passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
+
+  let history = useHistory();
 
   function login() {
     if (username == "") {
@@ -39,7 +43,11 @@ const LoginCompo = () => {
         method: "GET",
         url: `http://192.168.42.235:8000/login/${username}/${password}`,
       }).then((res) => {
-        console.log(res.data);
+        if (res.data == "ADMINDETAILRIGHT") {
+          history.push("/admin");
+        } else if (res.data == "CUSTOMERDETAILRIGHT") {
+          history.push("/customer");
+        }
       });
     }
   }
