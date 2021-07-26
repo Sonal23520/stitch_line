@@ -1,44 +1,35 @@
-package com.maharaja.stitch_line_backend.entity
+package com.maharaja.stitch_line_backend.dto
 
-import org.springframework.data.annotation.Id
-import org.springframework.data.mongodb.core.mapping.Document
-
-@Document(collection = "users")
-class Admin {
-    @Id
-    private var empid:String=""
+class UserDTO {
     private var username:String=""
+    private var empid:String=""
     private var name:String=""
     private var nic:String=""
     private var email:String=""
+    private var address:String=""
     private var contact:Int=0
     private var password:String=""
 
     constructor(
-        empid: String,
         username: String,
+        empid: String,
         name: String,
         nic: String,
         email: String,
+        address: String,
         contact: Int,
         password: String
     ) {
-        this.empid = empid
         this.username = username
+        this.empid = empid
         this.name = name
         this.nic = nic
         this.email = email
+        this.address = address
         this.contact = contact
         this.password = password
     }
 
-    fun getempid(): String {
-        return empid
-    }
-
-    fun setempid(username: String) {
-        this.empid = empid
-    }
 
     fun getusername(): String {
         return username
@@ -48,6 +39,13 @@ class Admin {
         this.username = username
     }
 
+    fun getempid(): String {
+        return empid
+    }
+
+    fun setempid(username: String) {
+        this.empid = empid
+    }
     fun getname(): String {
         return name
     }
@@ -72,6 +70,13 @@ class Admin {
         this.email = email
     }
 
+    fun getaddress(): String {
+        return address
+    }
+
+    fun setaddress(address: String) {
+        this.address = address
+    }
 
     fun getcontact(): Int {
         return contact

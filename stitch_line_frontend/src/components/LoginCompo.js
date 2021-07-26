@@ -11,9 +11,9 @@ const LoginCompo = () => {
   function login() {
     axios({
       method: "GET",
-      url: "http://192.168.42.235:8000/login/",
+      url: `http://192.168.42.235:8000/login/${username}/${password}`,
     }).then((res) => {
-      console.log(res);
+      console.log(res.data);
     });
   }
   return (

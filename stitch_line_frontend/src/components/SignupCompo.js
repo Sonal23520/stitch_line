@@ -40,10 +40,12 @@ const SignupCompo = () => {
     if (value == "Customer") {
       axios({
         method: "POST",
-        url: "http://192.168.42.235:8000/login/customer",
+        url: "http://192.168.42.235:8000/login",
         data: {
           username: username,
+          empid: "None",
           name: name,
+          nic: "None",
           email: email,
           address: address,
           contact: contact,
@@ -55,13 +57,14 @@ const SignupCompo = () => {
     } else {
       axios({
         method: "POST",
-        url: "http://192.168.42.235:8000/login/admin",
+        url: "http://192.168.42.235:8000/login",
         data: {
-          empid: empid,
           username: username,
+          empid: empid,
           name: name,
           nic: nic,
           email: email,
+          address: "None",
           contact: contact,
           password: password,
         },
