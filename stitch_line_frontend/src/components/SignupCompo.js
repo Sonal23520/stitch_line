@@ -22,7 +22,7 @@ const SignupCompo = () => {
   const [height, setHeight] = useState(350);
   const [open, setOpen] = React.useState(false);
 
-  /////////////////DATA//////////////
+  /////////////////DATA/////////////////
   const [username, setUsername] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
