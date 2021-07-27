@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./SignupCompo.css";
 import axios from "axios";
+import MuiAlert from "@material-ui/lab/Alert";
 
 import {
   TextField,
@@ -9,10 +10,17 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  Snackbar,
 } from "@material-ui/core";
+
+function Alert(props) {
+  return <MuiAlert elevation={6} variant="filled" {...props} />;
+}
+
 const SignupCompo = () => {
   const [value, setValue] = useState("Customer");
   const [height, setHeight] = useState(350);
+  const [open, setOpen] = React.useState(false);
 
   /////////////////DATA//////////////
   const [username, setUsername] = useState("");
@@ -48,8 +56,7 @@ const SignupCompo = () => {
   var nameRegex = /^[a-zA-Z0-9]+$/;
   var addressRegex = /^[a-zA-Z0-9]+$/;
   var contactRegex = /^\d{10}$/;
-  var nicRegex =
-    /^(?:19|20)?\d{2}(?:[0-35-8]\d\d(?<!(?:000|500|36[7-9]|3[7-9]\d|86[7-9]|8[7-9]\d)))\d{4}(?:[vVxX])$/;
+  var nicRegex = /^\d{10}$/;
   var empidRegex = /^[a-zA-Z0-9]+$/;
   var passwordRegex = /^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{6,16}$/;
   var emailRegex =
@@ -67,6 +74,36 @@ const SignupCompo = () => {
       setHeight(460);
     }
   }, [value]);
+
+  function clear() {
+    //////FIELD RESET//////
+    setUsername("");
+    setAddress("");
+    setEmail("");
+    setContact("");
+    setEmpid("");
+    setPassword("");
+    setName("");
+    setNic("");
+    ///////ERRO REST/////
+    setUsernameErro(false);
+    setNameErro(false);
+    setPasswordErro(false);
+    setEmailErro(false);
+    setAddressErro(false);
+    setContactErro(false);
+    setNicErro(false);
+    setEmpidErro(false);
+    //////HELPER RESET////
+    setUsernameHelper("");
+    setAddressHelper("");
+    setEmailHelper("");
+    setContactHelper("");
+    setEmpidHelper("");
+    setPasswordHelper("");
+    setNameHelper("");
+    setNicHelper("");
+  }
 
   function save() {
     if (value == "Admin" && empid == "") {
@@ -118,7 +155,6 @@ const SignupCompo = () => {
       setPasswordErro(true);
       setPasswordHelper("please fill valid password");
     } else {
-      alert("okkk");
       if (value == "Customer") {
         axios({
           method: "POST",
@@ -134,7 +170,8 @@ const SignupCompo = () => {
             password: password,
           },
         }).then((res) => {
-          console.log(res.data);
+          setOpen(true);
+          clear();
         });
       } else {
         axios({
@@ -151,11 +188,16 @@ const SignupCompo = () => {
             password: password,
           },
         }).then((res) => {
-          console.log(res.data);
+          setOpen(true);
+          clear();
         });
       }
     }
   }
+
+  const handleClose = () => {
+    setOpen(false);
+  };
 
   return (
     <Box>
@@ -284,6 +326,13 @@ const SignupCompo = () => {
         >
           Signup
         </Button>
+        {/* ///////////////// */}
+        <Snackbar open={open} autoHideDuration={4000} onClose={handleClose}>
+          <Alert onClose={handleClose} severity="success">
+            Registration Complete
+          </Alert>
+        </Snackbar>
+        {/* ///////////////// */}
       </Box>
     </Box>
   );
